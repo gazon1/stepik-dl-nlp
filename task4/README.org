@@ -29,6 +29,9 @@ https://github.com/neychev/harbour_dlia2019/blob/master/day02_Simple_RNN/Day_2_S
 [[https://towardsdatascience.com/character-level-language-model-1439f5dd87fe][Character-Level Language Model from scratch]]
 
 http://www.davidsbatista.net/blog/2018/12/06/Word_Embeddings/
+** Kaggle генерации цитата на 500k quotes датасете
+https://www.kaggle.com/manann/quotes-language-model/notebook
+   https://www.kaggle.com/manann/generating-quotes-using-gpt-2-language-model
 ** LSTM pytorch character-level network
 https://github.com/LeanManager/NLP-PyTorch/blob/master/assets/sequence_batching.png
 https://github.com/LeanManager/NLP-PyTorch/blob/master/Character-Level%20LSTM%20with%20PyTorch.ipynb
