@@ -1,8 +1,12 @@
+* TODO попробовать написать и обучить CBOW и поисследовать эмбединг оттуда
 * Другие реализации Scipgram
 https://github.hillwoodhome.net/Tixierae/deep_learning_NLP
 https://github.hillwoodhome.net/Andras7/word2vec-pytorch
 https://github.com/blackredscarf/pytorch-SkipGram
 https://github.com/ddehueck/skip-gram-negative-sampling
+https://pytorch.org/tutorials/beginner/nlp/word_embeddings_tutorial.html
+
+https://ruder.io/word-embeddings-softmax/index.html
 * Можно ли применить binary cross entropy к матрице, а не к вектору? И если да, то какой в этой физический смысл?
 https://www.quora.com/How-do-you-explain-binary-cross-entropy-in-autoencoder
 https://www.reddit.com/r/MachineLearning/comments/a9k4y4/d_using_binary_cross_entropy_loss_after_softmax/
@@ -10,6 +14,11 @@ https://gist.github.com/yang-zhang/09460d9e90a1bf29fb6edf121865df86
 https://medium.com/@zhang_yang/pytorch-loss-funtions-in-plain-python-b79c05f8b53f
 https://gombru.github.io/2018/05/23/cross_entropy_loss/
 https://dyakonov.org/2018/03/12/%D0%BB%D0%BE%D0%B3%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F-%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B8/
+* В scipgram мы используем два ембединга: один для кодирования слова, а другой - для кодирования контекст. Можно ли обойтись одним?
+[[https://pytorch.org/tutorials/beginner/nlp/word_embeddings_tutorial.html][Дистрибутивная гипотеза]]
+* Почему скалярное расстояние работает для измерения расстояния между словами? Почему не косинусное расстояние?
+* Как мы перешли от распределения категориальной с.в. CtxWj к распределению бинарной с.в. "слово CtxWj находится в контексте слова CenterWi?"?
+как понял, мы перешли от распределения категориальной случайной величины CtxWj, моделируемой через softmax cross entropy, к распределению бинарной случайно величины "слово CtxWj находится в контексте слова CenterWi?", моделируемой сигмоидой и binary cross entropy, через фильтрацию маской positive_sim_mask. Этим переходом, кажется, мы сильно сэкономим вычислений  во время обучения - веса эмбедингов не шрафуются за предсказания слов вне контекста, а лишь за предсказание маленкьой вероятности слов внутри контекста. Удивительно, что эмбединги во время инференса показывают что-то осмысленное - у нас же нет макси positive_sim_mask во время инференса и модель может выдать все, что угодно
 * Документация
 https://pytorch.org/docs/stable/nn.html#torch.nn.BCELoss
 https://pytorch.org/docs/stable/nn.functional.html

@@ -1,0 +1,65 @@
+* Тема: Как сгенерировать русские имена?
+* Цель: реализовать rnn с нуля, посмотреть как решать эту задачу через rnn и применить ее к своим данным, как обучить rnn и lstm в pytorch?
+* Источники информации
+[[https://pytorch.org/docs/stable/nn.functional.html#torch.nn.functional.log_softmax][log_softmax]]
+[[https://stackoverflow.com/questions/41455101/what-is-the-meaning-of-the-word-logits-in-tensorflow][what is logit]]
+[[https://mlexplained.com/2019/02/15/building-an-lstm-from-scratch-in-pytorch-lstms-in-depth-part-1/][Building an LSTM from Scratch in PyTorch (LSTMs in Depth Part 1)]]
+[[https://www.youtube.com/watch?v=Keqep_PKrY8&t=1080s][Lecture 8: Recurrent Neural Networks and Language Models]]
+[[https://peterroelants.github.io/posts/rnn-implementation-part01/][How to implement a simple RNN]]
+[[https://stackoverflow.com/questions/50149049/training-a-rnn-in-pytorch][how to train rnn in pytorch (stackoverflow)]]
+[[https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/02-intermediate/language_model][pytorch-tutorial for lstm word-level language model]]
+[[https://yaroshenko.by/char-lstm-text-generation/%09][Как научить нейросеть генерировать текст с помощью LSTM в PyTorch]]
+https://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html
+
+https://pytorch.org/docs/stable/nn.html
+https://stackoverflow.com/questions/50999977/what-does-the-gather-function-do-in-pytorch-in-layman-terms
+https://github.com/gabrielloye/RNN-walkthrough/blob/master/main.ipynb
+[[https://gist.github.com/karpathy/587454dc0146a6ae21fc][Karpathy LSTM numpy character-level model]]
+https://medium.com/the-artificial-impostor/notes-neural-language-model-with-pytorch-a8369ba80a5c
+https://www.fast.ai/2017/08/25/language-modeling-sota/
+[[https://github.com/pytorch/examples/tree/master/word_language_model][pytorch-tutorial Word-level language modeling RNN]]
+[[https://cs.stanford.edu/people/karpathy/char-rnn/pg.txt][Paul Graham's essays dataset]]
+https://github.com/deeplearningathome/pytorch-language-model
+https://github.com.cnpmjs.org/floydhub/word-language-model
+
+https://paperswithcode.com/task/language-modelling
+
+https://github.com/neychev/harbour_dlia2019/blob/master/day02_Simple_RNN/Day_2_Simple_RNN_pytorch.ipynb
+
+[[https://towardsdatascience.com/character-level-language-model-1439f5dd87fe][Character-Level Language Model from scratch]]
+
+http://www.davidsbatista.net/blog/2018/12/06/Word_Embeddings/
+** LSTM pytorch character-level network
+https://github.com/LeanManager/NLP-PyTorch/blob/master/assets/sequence_batching.png
+https://github.com/LeanManager/NLP-PyTorch/blob/master/Character-Level%20LSTM%20with%20PyTorch.ipynb
+https://www.kaggle.com/francescapaulin/character-level-lstm-in-pytorch
+
+[[https://github.com/genez/dante/blob/master/dante.txt][divina commedia dante txt]]
+* Тезисы
+** Как работать с скрытыми состояниями h_n, c_n, hidden? Когда их передавать, а когда - выкидывать?
+https://stackoverflow.com/questions/56677052/is-hidden-and-output-the-same-for-a-gru-unit-in-pytorch/56683970#56683970
+https://stackoverflow.com/questions/48302810/whats-the-difference-between-hidden-and-output-in-pytorch-lstm
+https://github.com/Samsung-IT-Academy/stepik-dl-nlp/blob/master/task4_RNN_name_generator.ipynb
+
+Если батчи идут последовательно, как в [[https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/02-intermediate/language_model][pytorch-tutorial for lstm language model]], то подаем скрытые вектора обратно на вход модели. Если же
+батчи не связаны между собой, как в https://www.kaggle.com/kanncaa1/recurrent-neural-network-with-pytorch,
+https://github.com/Samsung-IT-Academy/stepik-dl-nlp/blob/master/task4_RNN_name_generator.ipynb, то выкидывем скрытые вектора. Внутри батча
+pytorch.nn.RNN и pytorch.nn.LSTM сами передают скрытые вектора.
+
+** Скрытые состояния h у RNN похожи на контекстные вектора в word2vec, а входные вектора - на центральные.
+*** Про центральные и контекстные вектора в word2vec
+https://github.com/Samsung-IT-Academy/stepik-dl-nlp/blob/master/task2_word_embeddings.ipynb
+https://stepik.org/lesson/225313/step/7?unit=198056
+
+*** Про RNN, как обучать, стакать слои и про вектора скрытого состояния
+В RNN character level languge model скрытый вектор моделирует контекст, а входной вектор - букву. Теперь, вектор скрытого состояния есть
+смысл передавать, если мы проходим по последовательным куска текста и занулять, если у нас куски текста не связаны между собой - контекст
+совсем другой теперь.
+[[http://karpathy.github.io/2015/05/21/rnn-effectiveness/]["The Unreasonable Effectiveness of Recurrent Neural Networks" Karpathy blog's post on RNN]] - 
+** Как обучать RNN, если ей нужно подавать последоватеьные послежовательности и нельзя вроде как семплить случайно?
+** Truncated backprop
+https://discuss.pytorch.org/t/implementing-truncated-backpropagation-through-time/15500/3
+* Улучшения
+** TODO считтаь perplexity на train и val
+https://www.coursera.org/lecture/language-processing/perplexity-is-our-model-surprised-with-a-real-text-hw9ZI
+

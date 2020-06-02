@@ -1,0 +1,5 @@
+* Тема
+* Цель
+* Источники информации
+http://www.davidsbatista.net/blog/2020/01/25/Attention-seq2seq/
+* Тезисы
